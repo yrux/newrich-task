@@ -1,56 +1,23 @@
--- phpMyAdmin SQL Dump
--- version 4.9.7
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Generation Time: Dec 07, 2021 at 02:31 PM
--- Server version: 10.3.25-MariaDB
--- PHP Version: 7.3.33
+/*
+SQLyog Community v13.1.6 (64 bit)
+MySQL - 10.4.18-MariaDB : Database - newrichtask
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*Table structure for table `course_scores` */
 
---
--- Database: `rubarant_hiroy`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `courses`
---
-
-CREATE TABLE `courses` (
-  `id` int(11) NOT NULL,
-  `course_name` varchar(255) DEFAULT NULL,
-  `marked_for_scoring` tinyint(4) DEFAULT 0,
-  `average_score` float DEFAULT 0,
-  `grade` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `courses`
---
-
-INSERT INTO `courses` (`id`, `course_name`, `marked_for_scoring`, `average_score`, `grade`) VALUES
-(3, 'Computer Science Project', 1, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `course_scores`
---
+DROP TABLE IF EXISTS `course_scores`;
 
 CREATE TABLE `course_scores` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `judge_id` int(11) DEFAULT NULL,
   `course_id` int(11) DEFAULT NULL,
   `group_members` varchar(555) DEFAULT NULL,
@@ -65,88 +32,143 @@ CREATE TABLE `course_scores` (
   `inp6` int(11) DEFAULT NULL,
   `inp7` int(11) DEFAULT NULL,
   `inp8` int(11) DEFAULT NULL,
-  `total` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `total` float DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `course_scores`
---
+/*Data for the table `course_scores` */
 
-INSERT INTO `course_scores` (`id`, `judge_id`, `course_id`, `group_members`, `project_title`, `group_number`, `comment`, `inp1`, `inp2`, `inp3`, `inp4`, `inp5`, `inp6`, `inp7`, `inp8`, `total`) VALUES
-(5, 5, 3, 'test', 'test', '123', 'comments', 5, 0, 4, 0, 0, 13, 0, 12, 34),
-(6, 11, 3, 'csc350', 'php final project', '001', '1234567', 5, 0, 0, 10, 8, 0, 0, 13, 36);
+insert  into `course_scores`(`id`,`judge_id`,`course_id`,`group_members`,`project_title`,`group_number`,`comment`,`inp1`,`inp2`,`inp3`,`inp4`,`inp5`,`inp6`,`inp7`,`inp8`,`total`) values 
+(5,5,3,'test','test','123','comments',5,0,4,0,0,13,0,12,34),
+(6,11,3,'csc350','php final project','001','1234567',5,0,0,10,8,0,0,13,36);
 
--- --------------------------------------------------------
+/*Table structure for table `courses` */
 
---
--- Table structure for table `login`
---
+DROP TABLE IF EXISTS `courses`;
+
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `course_name` varchar(255) DEFAULT NULL,
+  `marked_for_scoring` tinyint(4) DEFAULT 0,
+  `average_score` float DEFAULT 0,
+  `grade` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `courses` */
+
+insert  into `courses`(`id`,`course_name`,`marked_for_scoring`,`average_score`,`grade`) values 
+(3,'Computer Science Project',1,NULL,NULL);
+
+/*Table structure for table `login` */
+
+DROP TABLE IF EXISTS `login`;
 
 CREATE TABLE `login` (
-  `id` int(9) NOT NULL,
+  `id` int(9) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `user_type` tinyint(4) NOT NULL DEFAULT 0 COMMENT '0=main admin, 1 = judge'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `user_type` int(11) NOT NULL COMMENT '0=main admin, 1 = judge',
+  PRIMARY KEY (`id`),
+  KEY `user_type` (`user_type`),
+  CONSTRAINT `login_ibfk_1` FOREIGN KEY (`user_type`) REFERENCES `user_types` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `login`
---
+/*Data for the table `login` */
 
-INSERT INTO `login` (`id`, `name`, `email`, `username`, `password`, `user_type`) VALUES
-(1, 'yrux', 'yruxwork@gmail.com', 'yrux', '25d55ad283aa400af464c76d713c07ad', 0),
-(6, 'judge2', 'judge2@gmail.com', 'judge2', '25d55ad283aa400af464c76d713c07ad', 1),
-(7, 'judge3', 'judge3@gmail.com', 'judge3', '25d55ad283aa400af464c76d713c07ad', 1),
-(9, 'judge4', 'judge4@gmail.com', 'judge4', '25d55ad283aa400af464c76d713c07ad', 1),
-(11, 'judge 1', 'judge1@gmail.com', 'judge1', '25d55ad283aa400af464c76d713c07ad', 1);
+insert  into `login`(`id`,`name`,`email`,`username`,`password`,`user_type`) values 
+(12,'yrux','yrux@gmail.com','yrux','2691675c9564a2ca3f2905d59c92cc10',2),
+(13,'yrux2','yrux2@gmail.com','yrux2','2691675c9564a2ca3f2905d59c92cc10',1);
 
---
--- Indexes for dumped tables
---
+/*Table structure for table `login_permissions` */
 
---
--- Indexes for table `courses`
---
-ALTER TABLE `courses`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `login_permissions`;
 
---
--- Indexes for table `course_scores`
---
-ALTER TABLE `course_scores`
-  ADD PRIMARY KEY (`id`);
+CREATE TABLE `login_permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_type_id` int(11) DEFAULT NULL,
+  `permission_id` int(11) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `user_type_id` (`user_type_id`),
+  KEY `permission_id` (`permission_id`),
+  CONSTRAINT `login_permissions_ibfk_1` FOREIGN KEY (`user_type_id`) REFERENCES `user_types` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `login_permissions_ibfk_2` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id`);
+/*Data for the table `login_permissions` */
 
---
--- AUTO_INCREMENT for dumped tables
---
+insert  into `login_permissions`(`id`,`user_type_id`,`permission_id`,`updated_at`,`created_at`) values 
+(1,2,1,'2022-08-02 18:56:41','2022-08-02 18:56:41'),
+(2,2,2,'2022-08-02 18:56:43','2022-08-02 18:56:43'),
+(3,2,3,'2022-08-02 18:56:45','2022-08-02 18:56:45'),
+(4,2,4,'2022-08-02 18:56:47','2022-08-02 18:56:47'),
+(5,2,5,'2022-08-02 18:56:49','2022-08-02 18:56:49'),
+(6,2,6,'2022-08-02 18:56:51','2022-08-02 18:56:51'),
+(7,2,7,'2022-08-02 18:56:53','2022-08-02 18:56:53'),
+(8,2,8,'2022-08-02 18:56:55','2022-08-02 18:56:55'),
+(9,2,9,'2022-08-02 18:56:57','2022-08-02 18:56:57'),
+(10,2,10,'2022-08-02 18:56:59','2022-08-02 18:56:59'),
+(11,2,11,'2022-08-02 18:57:02','2022-08-02 18:57:02'),
+(12,2,12,'2022-08-02 18:57:04','2022-08-02 18:57:04'),
+(13,1,1,'2022-08-02 18:57:14','2022-08-02 18:57:14'),
+(14,1,3,'2022-08-02 18:57:19','2022-08-02 18:57:19'),
+(15,1,5,'2022-08-02 18:57:27','2022-08-02 18:57:27'),
+(16,1,7,'2022-08-02 18:57:29','2022-08-02 18:57:29'),
+(17,1,9,'2022-08-02 18:57:32','2022-08-02 18:57:32'),
+(18,1,11,'2022-08-02 18:57:35','2022-08-02 18:57:35');
 
---
--- AUTO_INCREMENT for table `courses`
---
-ALTER TABLE `courses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+/*Table structure for table `permissions` */
 
---
--- AUTO_INCREMENT for table `course_scores`
---
-ALTER TABLE `course_scores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+DROP TABLE IF EXISTS `permissions`;
 
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-COMMIT;
+CREATE TABLE `permissions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*Data for the table `permissions` */
+
+insert  into `permissions`(`id`,`title`,`name`,`updated_at`,`created_at`) values 
+(1,'text-read','text-read','2022-08-02 18:52:29','2022-08-02 18:52:29'),
+(2,'text-write','text-write','2022-08-02 18:52:33','2022-08-02 18:52:33'),
+(3,'textarea-read','textarea-read','2022-08-02 18:52:44','2022-08-02 18:52:44'),
+(4,'textarea-write','textarea-write','2022-08-02 18:52:49','2022-08-02 18:52:49'),
+(5,'password-read','password-read','2022-08-02 18:52:56','2022-08-02 18:52:56'),
+(6,'password-write','password-write','2022-08-02 18:53:00','2022-08-02 18:53:00'),
+(7,'select-read','select-read','2022-08-02 18:53:05','2022-08-02 18:53:05'),
+(8,'select-write','select-write','2022-08-02 18:53:09','2022-08-02 18:53:09'),
+(9,'radio-read','radio-read','2022-08-02 18:53:31','2022-08-02 18:53:18'),
+(10,'radio-write','radio-write','2022-08-02 18:53:29','2022-08-02 18:53:26'),
+(11,'checkbox-read','checkbox-read','2022-08-02 18:53:36','2022-08-02 18:53:36'),
+(12,'checkbox-write','checkbox-write','2022-08-02 18:53:40','2022-08-02 18:53:40');
+
+/*Table structure for table `user_types` */
+
+DROP TABLE IF EXISTS `user_types`;
+
+CREATE TABLE `user_types` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(50) DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+/*Data for the table `user_types` */
+
+insert  into `user_types`(`id`,`type`,`updated_at`,`created_at`) values 
+(1,'onlyread','2022-08-02 18:54:27','2022-08-02 18:54:27'),
+(2,'allpermissions','2022-08-02 18:54:46','2022-08-02 18:54:46');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

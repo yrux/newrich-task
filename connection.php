@@ -1,6 +1,6 @@
 <?php
 $databaseHost = 'localhost';
-$databaseName = 'dbname';
+$databaseName = 'newrichtask';
 $databaseUsername = 'root';
 $databasePassword = '';
 
