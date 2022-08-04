@@ -82,5 +82,17 @@
                 {"id": "4", "value": "Checkbox 4"}
             ]
         }
+    },
+    {
+        "field_name": "text",
+        "field_label": "Test TextBox2",
+        "field_id": "7",
+        "field_read_permission": "1",
+        "field_write_permission": "2",
+        "default_value": "test textbox",
+        "options": {
+            "class": "form-control testbox",
+            "required": "true"
+        }
     }
 ]

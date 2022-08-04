@@ -12,7 +12,7 @@ class Form {
         $html = '';
         $jsonFormatted = json_decode($json);
         if($this->auth->userLoggedIn()){
-            $html = '<form>';
+            $html = '<form method="POST">';
             foreach($jsonFormatted as $jsonFormatteKey=>$jsonFormatte){
                 $allowRead = $this->auth->isAllowed($jsonFormatte->field_read_permission);
                 $allowWrite = $this->auth->isAllowed($jsonFormatte->field_write_permission);
@@ -137,7 +137,7 @@ class Form {
                                     $radios.='
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" 
-                                        name="radios['.$jsonFormatteKey.']" 
+                                        name="checkboxes['.$jsonFormatteKey.']" 
                                         id="'.$radioId.$radioInside.'" value="'.$dropdownValue->value.'" 
                                         '.(in_array($dropdownValue->id, $valueChecks)?'checked':'').' />
                                         <label class="form-check-label" for="'.$radioId.$radioInside.'">
@@ -162,7 +162,7 @@ class Form {
                 // var_dump($jsonFormatte->default_value);
                 // var_dump($jsonFormatte->options);
             }
-            $html .= '</form>';
+            $html .= '<input type="submit" value="Send"/></form>';
         }
         print $html;
     }

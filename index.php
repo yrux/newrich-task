@@ -22,4 +22,22 @@ $formGenerator = new Form();
     ?>
     </div>
       </div>
+<script>
+function handleForm(e){
+    e.preventDefault();
+    var form = $('form').eq(0);
+    
+    $.ajax({
+        type: "POST",
+        url: '/handleForm.php',
+        data: form.serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+          alert(data); // show response from the php script.
+        //   location.reload();
+        }
+    });
+}
+document.querySelector('form').addEventListener("submit", handleForm);
+</script>
 <?php include 'layout/footer.php'; ?>
