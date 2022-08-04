@@ -4,7 +4,7 @@
 include 'Helpers/Form.php';
 $formGenerator = new Form();
 ?>
-<div class="login-screen">
+<div class="inner-screen">
         <div id="formContent">
     <h1>Welcome</h1>
     <?php

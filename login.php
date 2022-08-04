@@ -51,8 +51,12 @@ if(isset($_POST['submit'])) {
           <!-- Login Form -->
           <h1>Welcome to Portal</h1>
           <form method="POST" action="">
-            <input type="text" id="login" class="fadeIn second" name="username" placeholder="UserName">
-            <input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+            <div class="mb-3">
+              <input type="text" id="login" class="form-control fadeIn second" name="username" placeholder="UserName">
+            </div>
+            <div class="mb-3">
+              <input type="text" id="password" class="form-control fadeIn third" name="password" placeholder="password">
+            </div>
             <input type="submit" name="submit" class="fadeIn fourth" value="Log In">
           </form>
         </div>
