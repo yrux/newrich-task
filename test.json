@@ -7,7 +7,7 @@
         "field_write_permission": "2",
         "default_value": "test textbox",
         "options": {
-            "class": "testbox",
+            "class": "form-control testbox",
             "id": "testingtestbox"
         }
     },
@@ -19,7 +19,7 @@
         "field_write_permission": "4",
         "default_value": "test textarea",
         "options": {
-            "class": "testareabox",
+            "class": "form-control testareabox",
             "id": "testingtestareabox"
         }
     }
