@@ -7,8 +7,7 @@
         "field_write_permission": "2",
         "default_value": "test textbox",
         "options": {
-            "class": "form-control testbox",
-            "id": "testingtestbox"
+            "class": "form-control testbox"
         }
     },
     {
@@ -19,8 +18,69 @@
         "field_write_permission": "4",
         "default_value": "test textarea",
         "options": {
-            "class": "form-control testareabox",
-            "id": "testingtestareabox"
+            "class": "form-control testareabox"
+        }
+    },
+    {
+        "field_name": "password",
+        "field_label": "Test Password",
+        "field_id": "3",
+        "field_read_permission": "5",
+        "field_write_permission": "6",
+        "default_value": "test password",
+        "options": {
+            "class": "form-control passwordbox"
+        }
+    },
+    {
+        "field_name": "select",
+        "field_label": "Test Select",
+        "field_id": "4",
+        "field_read_permission": "7",
+        "field_write_permission": "8",
+        "default_value": "3",
+        "options": {
+            "class": "form-control selectbox",
+            "dropdownValues":[
+                {"id": "1", "value": "Option 1"},
+                {"id": "2", "value": "Option 2"},
+                {"id": "3", "value": "Option 3"},
+                {"id": "4", "value": "Option 4"}
+            ]
+        }
+    },
+    {
+        "field_name": "radio",
+        "field_label": "Test Radio",
+        "field_id": "5",
+        "field_read_permission": "9",
+        "field_write_permission": "10",
+        "default_value": "2",
+        "options": {
+            "class": "form-control radiobox",
+            "dropdownValues":[
+                {"id": "1", "value": "Radio 1"},
+                {"id": "2", "value": "Radio 2"},
+                {"id": "3", "value": "Radio 3"},
+                {"id": "4", "value": "Radio 4"}
+            ]
+        }
+    },
+    {
+        "field_name": "checkbox",
+        "field_label": "Test Checkbox",
+        "field_id": "6",
+        "field_read_permission": "11",
+        "field_write_permission": "12",
+        "default_value": "4|1",
+        "options": {
+            "class": "form-control checkboxbox",
+            "dropdownValues":[
+                {"id": "1", "value": "Checkbox 1"},
+                {"id": "2", "value": "Checkbox 2"},
+                {"id": "3", "value": "Checkbox 3"},
+                {"id": "4", "value": "Checkbox 4"}
+            ]
         }
     }
 ]
